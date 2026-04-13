@@ -1,1 +1,1 @@
-# seniorDesignLab3
+# SeniorDesignLab3
