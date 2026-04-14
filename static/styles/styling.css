@@ -1,0 +1,116 @@
+/* ECE:4880 Team Main Page Styling
+   Adhering to UIowa Black & Gold Standards
+   Black: #000000 | Gold: #FFCD00
+*/
+
+:root {
+    --uiowa-black: #000000;
+    --uiowa-gold: #FFCD00;
+    --container-bg: #121212; /* Deep grey for contrast against black body */
+    --text-white: #ffffff;
+    --hover-gold: #e6b800;
+}
+
+body {
+    background-color: var(--uiowa-black);
+    color: var(--text-white);
+    font-family: 'Inter', 'Roboto', -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    max-width: 900px;
+    width: 90%;
+    margin-top: 50px;
+    padding: 40px;
+    background-color: var(--container-bg);
+    border: 2px solid var(--uiowa-gold);
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+h1 {
+    color: var(--uiowa-gold);
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-bottom: 3px solid var(--uiowa-gold);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.team-description {
+    font-size: 1.1rem;
+    color: #cccccc;
+    margin-bottom: 40px;
+}
+
+/* Team Member Grid */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.member-card {
+    background: #1a1a1a;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--uiowa-gold);
+}
+
+.member-card a {
+    color: var(--uiowa-gold);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: block;
+}
+
+/* Protected Area Styling */
+#protected-area {
+    margin-top: 40px;
+    padding: 30px;
+    border-top: 1px solid #333;
+    background: rgba(255, 205, 0, 0.05); /* Very subtle gold tint */
+}
+
+#protected-area h2 {
+    color: var(--uiowa-gold);
+    margin-bottom: 15px;
+}
+
+#unlock-btn {
+    background-color: var(--uiowa-gold);
+    color: var(--uiowa-black);
+    font-size: 1.1rem;
+    font-weight: 800;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#unlock-btn:hover {
+    background-color: var(--hover-gold);
+}
+
+.footer {
+    margin-top: 30px;
+    color: #666;
+    font-size: 0.9rem;
+}
