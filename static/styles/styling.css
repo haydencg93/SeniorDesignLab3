@@ -114,3 +114,19 @@ h1 {
     color: #666;
     font-size: 0.9rem;
 }
+
+/* Global link styling for readability */
+a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--uiowa-gold);
+    text-decoration: underline;
+}
+
+a:visited {
+    color: var(--text-white);
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jaley – Protected Area</title>
+
+    <!-- 🔒 Protection -->
+    <script>
+        if (sessionStorage.getItem("authenticated") !== "true") {
+            alert("Access denied");
+            window.location.href = "../index.html";
+        }
+    </script>
+
+    <!-- ✅ Correct stylesheet path -->
+    <link rel="stylesheet" href="../../static/styles/styling.css">
+</head>
+
+<body class="protected">
+
+<div class="container">
+    <h1>Jaley Grimm – Protected Area</h1>
+
+    <p>
+        This area contains internal portfolio content and is only accessible
+        after successful authentication.
+    </p>
+
+    <ul>
+        <li><a href="../index.html">Return to Jaley’s Portfolio</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Management Portal</title>
+
+    <!-- 🔒 Protection: blocks direct access -->
+    <script>
+        if (sessionStorage.getItem("authenticated") !== "true") {
+            alert("Access denied");
+            window.location.href = "../index.html";
+        }
+    </script>
+
+    <link rel="stylesheet" href="../static/styles/styling.css">
+</head>
+<body>
+
+<h1>Team Management Portal</h1>
+<p>Welcome to the protected team area.</p>
+
+<ul>
+    <li><a href = "team-notes.html">Team Notes</a></li>
+    <li><a href="../index.html">Return to Public Site</a></li>
+</ul>
+
+</body>
+</html>
