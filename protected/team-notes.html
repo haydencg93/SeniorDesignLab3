@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Notes</title>
+
+    <!-- 🔒 Protection -->
+    <script>
+        if (sessionStorage.getItem("authenticated") !== "true") {
+            alert("Access denied");
+            window.location.href = "../index.html";
+        }
+    </script>
+
+    <link rel="stylesheet" href="../static/styles/styling.css">
+</head>
+
+<body class="protected">
+
+<div class="container">
+    <h1>Internal Team Notes</h1>
+
+    <ul>
+        <li>Finish each member's profile</li>
+        <li>Confirm password protection behavior</li>
+        <li>Ensure Black &amp; Gold theme compliance</li>
+    </ul>
+
+    <p>These notes are visible only to authenticated team members.</p>
+
+    <a href="protected_index.html">Back to Team Portal</a>
+</div>
+
+</body>
+</html>

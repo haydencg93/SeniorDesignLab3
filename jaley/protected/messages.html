@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Protected Messages</title>
+
+    <!-- ✅ Site styling -->
+    <link rel="stylesheet" href="../static/styles/styling.css">
+
+    <!-- 🔒 Protection -->
+    <script>
+        if (sessionStorage.getItem("authenticated") !== "true") {
+            alert("Access denied.");
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+
+<body class="protected">
+
+<div class="container">
+    <h2>Messages</h2>
+
+    <ul id="message-list"></ul>
+
+    <hr>
+
+    <ul>
+        <li>
+            <a href="protected.html">Back to Protected Area</a>
+        </li>
+        <li>
+            <a href="../index.html">Return to Portfolio</a>
+        </li>
+    </ul>
+</div>
+
+<script>
+    const messages = JSON.parse(localStorage.getItem("messages")) || [];
+    const list = document.getElementById("message-list");
+
+    if (messages.length === 0) {
+        list.innerHTML = "<li>No messages found.</li>";
+    } else {
+        messages.forEach(msg => {
+            const li = document.createElement("li");
+            li.innerHTML = `<strong>${msg.timestamp}</strong><br>${msg.text}`;
+            list.appendChild(li);
+        });
+    }
+</script>
+
+</body>
+</html>

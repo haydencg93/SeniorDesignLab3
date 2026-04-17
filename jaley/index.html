@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaley Grimm | Portfolio</title>
+    <link rel="stylesheet" href="static/styles/styling.css">
+</head>
+
+<body>
+<div class="container">
+
+    <header class="header-profile">
+        <img src="static/images/20240603_165256.png" alt="Profile photo of Jaley Grimm" class="profile-img">
+        <div class="profile-text">
+            <h1>Jaley Grimm</h1>
+            <p class="subtitle">Computer Science and Engineering Student</p>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            Hello! I’m <strong>Jaley Grimm</strong>, a Computer Science and Engineering student
+            at the University of Iowa. I became interested in computer science after taking a coding class at Kirkwood Community College. 
+            After graduating with an Associates Degree in Liberal Arts, I transferred to the University of Iowa to get my Bachelors Degree
+            in Computer Science and Engineering. This portfolio highlights my academic work, skills, and project experience.
+        </p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills & Technologies</h2>
+        <ul>
+            <li><strong>Languages:</strong> C, C++, Python, Java, Haskell, JavaScript, HTML, CSS</li>
+            <li><strong>Tools:</strong> GitLab, VS Code, CLion, IntelliJ, BlueJ, MYSQL, GitHub</li>
+        </ul>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <p><strong>Degrees:</strong> 
+            <ul>
+            <li>Associates Degree in Liberal Arts</li>
+            <li>Bachelors Degree in Computer Science and Engineering</li>
+            </ul>
+        <p><strong>Institutions:</strong> 
+            <ul>
+            <li>Kirkwood Community College</li>
+            <li>University of Iowa</li>
+            </ul>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+            <ul>
+                <li><a href="projects.html">My Projects</a></li>
+            </ul>
+    </section>
+
+    <!-- ✅ Contact Form (connected to messages.html) -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+            <label for="contact-message">Send a Message:</label><br>
+            <textarea id="contact-message" name="message" required placeholder="Enter your message here..."></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- ✅ Protected Area -->
+    <section id="protected-area">
+        <h2>Protected Content</h2>
+        <p>Access internal team management tools and messages.</p>
+        <button id="unlock-btn">Access Protected Content</button>
+    </section>
+
+    <ul>
+        <li><a href="../index.html">Return to Team Home Page</a></li>
+    </ul>
+
+</div>
+
+<div class="footer">
+    <p>&copy; 2026 Jaley Grimm | Powered by GitHub Pages</p>
+</div>
+
+<script src="static/scripts/scripting.js"></script>
+<script src="static/scripts/auth.js"></script>
+</body>
+</html>
