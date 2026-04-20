@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "supabase": "^2.92.1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.103.3",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2"
+  }
+}

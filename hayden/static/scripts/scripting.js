@@ -43,7 +43,7 @@ function setupForms() {
 
         let senderIp = "Unknown";
         try {
-            // Fetch the user's public IP address
+            // Fetch the user's public IP address for the sender_ip
             const ipResponse = await fetch('https://api.ipify.org?format=json');
             const ipData = await ipResponse.json();
             senderIp = ipData.ip;

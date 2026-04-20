@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Inbox | Protected</title>
+
+    <!-- 🔒 Protection: blocks direct access -->
+    <script>
+        if (sessionStorage.getItem("authenticated") !== "true") {
+            alert("Unauthorized access! Returning to login.");
+            window.location.href = "../index.html";
+        }
+    </script>
+
+    <link rel="stylesheet" href="../static/styles/styling.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Team Message Inbox</h1>
+        <p class="subtitle">Viewing all communications from portfolio contact forms.</p>
+    </header>
+
+    <section id="inbox-section">
+        <h2>Recent Messages</h2>
+        <div id="loading-indicator">Fetching messages from Supabase...</div>
+        
+        <div class="table-responsive">
+            <table id="messages-table" style="display: none; width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <thead>
+                    <tr style="background-color: var(--uiowa-gold); color: var(--uiowa-black);">
+                        <th style="padding: 12px; border: 1px solid var(--uiowa-black);">Date</th>
+                        <th style="padding: 12px; border: 1px solid var(--uiowa-black);">To</th>
+                        <th style="padding: 12px; border: 1px solid var(--uiowa-black);">Message</th>
+                        <th style="padding: 12px; border: 1px solid var(--uiowa-black);">Sender IP</th>
+                    </tr>
+                </thead>
+                <tbody id="messages-body">
+                    <!-- Dynamic content will be injected here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="empty-state" style="display: none; text-align: center; padding: 40px;">
+            <p>No messages found in the database.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>
+            <a href="protected_index.html">← Back to Management Portal</a> | 
+            <a href="../index.html">Team Home</a>
+        </p>
+    </footer>
+</div>
+
+<!-- Load Supabase and Logic -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="static/scripts/scriptingMessages.js"></script>
+
+</body>
+</html>

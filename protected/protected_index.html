@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Management Portal</title>
 
     <!-- 🔒 Protection: blocks direct access -->
     <script>
+        /**
+         * Requirement #2: Persistent Login Session.
+         * The key 'authenticated' must match the key used in scripting.js.
+         */
         if (sessionStorage.getItem("authenticated") !== "true") {
-            alert("Access denied");
+            // Log for debugging
+            console.warn("Unauthorized attempt detected. Missing session key.");
+            alert("Unauthorized access! Please login via the main page.");
             window.location.href = "../index.html";
         }
     </script>
@@ -16,13 +23,42 @@
 </head>
 <body>
 
-<h1>Team Management Portal</h1>
-<p>Welcome to the protected team area.</p>
+<div class="container">
+    <header>
+        <h1>Team Management Portal</h1>
+        <p class="subtitle">Internal Access Only</p>
+    </header>
 
-<ul>
-    <li><a href = "team-notes.html">Team Notes</a></li>
-    <li><a href="../index.html">Return to Public Site</a></li>
-</ul>
+    <section>
+        <h2>Welcome, Team</h2>
+        <p>You have successfully authenticated. Use the tools below to manage the project.</p>
+        
+        <div class="management-grid">
+            <ul class="nav-list">
+                <li><a href="team-notes.html">📝 Team Notes & Strategy</a></li>
+                <li><a href="message-inbox.html">📥 Team Message Inbox</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Session Control</h2>
+        <button id="logout-btn">Log Out & Clear Session</button>
+    </section>
+
+    <footer>
+        <p><a href="../index.html">Return to Public Site</a></p>
+    </footer>
+</div>
+
+<script>
+    // Simple logout logic
+    document.getElementById('logout-btn').addEventListener('click', () => {
+        sessionStorage.removeItem('authenticated');
+        alert("Session cleared.");
+        window.location.href = "../index.html";
+    });
+</script>
 
 </body>
 </html>
