@@ -40,10 +40,20 @@ async function initSupabase() {
     }
 }
 
-// 2. Setup the Button Click
+// 2. Setup the Button Clicks
 function setupEventListeners() {
     const unlockBtn = document.getElementById("unlock-btn");
-    
+   
+    document.getElementById("hayden-btn").onclick = function() {
+        window.location.href = "hayden/index.html";
+    };
+    document.getElementById("kaeden-btn").onclick = function() {
+        window.location.href = "kaeden/index.html";
+    };
+    document.getElementById("jaley-btn").onclick = function() {
+        window.location.href = "jaley/index.html";
+    };
+
     if (unlockBtn) {
         // Clone and replace to prevent duplicate listeners if script reloads
         const newBtn = unlockBtn.cloneNode(true);

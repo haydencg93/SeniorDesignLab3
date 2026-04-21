@@ -6,9 +6,11 @@
 :root {
     --uiowa-black: #000000;
     --uiowa-gold: #FFCD00;
-    --container-bg: #121212; /* Deep grey for contrast against black body */
+    --container-bg: #121212;
+    --uiowa-gray: #464646;
+    --hover-gray: #232323;
     --text-white: #ffffff;
-    --hover-gold: #e6b800;
+    --hover-gold: #deb100;
 }
 
 body {
@@ -84,16 +86,31 @@ h1 {
 #protected-area {
     margin-top: 40px;
     padding: 30px;
-    border-top: 1px solid #333;
-    background: rgba(255, 205, 0, 0.05); /* Very subtle gold tint */
-}
-
-#protected-area h2 {
-    color: var(--uiowa-gold);
-    margin-bottom: 15px;
+    display: flex;
+    justify-content: left;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 25px;
 }
 
 #unlock-btn {
+    background-color: var(--uiowa-gold);
+    color: var(--uiowa-black);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#unlock-btn:hover {
+    background-color: var(--hover-gold);
+}
+
+#hayden-btn, #kaeden-btn, #jaley-btn {
     background-color: var(--uiowa-gold);
     color: var(--uiowa-black);
     font-size: 1.1rem;
@@ -105,7 +122,7 @@ h1 {
     transition: background-color 0.2s ease;
 }
 
-#unlock-btn:hover {
+#hayden-btn:hover, #kaeden-btn:hover, #jaley-btn:hover {
     background-color: var(--hover-gold);
 }
 
