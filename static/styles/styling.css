@@ -85,9 +85,6 @@ h1 {
 /* Protected Area Styling */
 #protected-area {
     margin-top: 40px;
-    padding: 30px;
-    display: flex;
-    justify-content: left;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -97,7 +94,7 @@ h1 {
 #unlock-btn {
     background-color: var(--uiowa-gold);
     color: var(--uiowa-black);
-    font-size: 0.75rem;
+    font-size: 0.60rem;
     font-weight: 800;
     padding: 10px 20px;
     border: none;
