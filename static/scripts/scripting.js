@@ -41,6 +41,7 @@ async function initSupabase() {
 }
 
 // 2. Setup the Button Clicks
+// 2. Setup the Button Clicks
 function setupEventListeners() {
     const unlockBtn = document.getElementById("unlock-btn");
    
@@ -55,11 +56,18 @@ function setupEventListeners() {
     };
 
     if (unlockBtn) {
-        // Clone and replace to prevent duplicate listeners if script reloads
+        // Clone and replace to prevent duplicate listeners
         const newBtn = unlockBtn.cloneNode(true);
         unlockBtn.parentNode.replaceChild(newBtn, unlockBtn);
 
         newBtn.addEventListener("click", async () => {
+            // Check if the user is already authenticated in this session
+            if (sessionStorage.getItem("authenticated") === "true") {
+                console.log("🎟️ Session found. Bypassing login.");
+                window.location.href = "protected/protected_index.html";
+                return; // Exit early
+            }
+
             const password = prompt("Enter team password:");
             if (!password) return;
 
@@ -74,23 +82,23 @@ function setupEventListeners() {
 
                 if (error) {
                     console.error("🛑 Function error:", error);
-                    // Helpful hint for the common 401 error
                     if (error.context?.status === 401) {
-                        alert("Access Denied: Ensure 'JWT Verification' is DISABLED in the Supabase Dashboard for this function.");
+                        alert("Access Denied: Ensure 'JWT Verification' is DISABLED in the Supabase Dashboard.");
                     } else {
                         alert(`System error: ${error.message}`);
                     }
                 } else if (data && data.success) {
+                    // Set session item so this bypass works next time
                     sessionStorage.setItem("authenticated", "true");
                     alert("✅ Access Granted!");
                     window.location.href = "protected/protected_index.html";
                 } else {
-                    console.warn("⚠️ Password check failed (Success: false)");
+                    console.warn("⚠️ Password check failed");
                     alert("Error: That password is not an acceptable password.");
                 }
             } catch (invokeError) {
                 console.error("🔥 Invocation failure:", invokeError);
-                alert("Failed to reach the authentication server. Verify the function is deployed to the NEW project.");
+                alert("Failed to reach the authentication server.");
             } finally {
                 newBtn.disabled = false;
                 newBtn.innerText = "Access Protected Content";

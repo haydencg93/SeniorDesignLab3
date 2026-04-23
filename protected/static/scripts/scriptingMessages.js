@@ -110,7 +110,6 @@ function renderMessages(messagesToDisplay) {
     const body = document.getElementById('messages-body');
     
     if (!body || !table) return;
-    
     body.innerHTML = '';
     
     messagesToDisplay.forEach(msg => {
@@ -122,9 +121,15 @@ function renderMessages(messagesToDisplay) {
         row.innerHTML = `
             <td style="padding: 12px; font-size: 0.8rem; color: var(--soft-gold);">${date}</td>
             <td style="padding: 12px; font-weight: bold; color: var(--uiowa-gold);">${msg.recipient_name || 'General'}</td>
+            <td style="padding: 12px; color: var(--white);">${msg.sender_name || 'Anonymous'}</td>
+            <td style="padding: 12px;">
+                <a href="mailto:${msg.sender_email}" style="color: var(--soft-gold); text-decoration: underline; font-size: 0.85rem;">
+                    ${msg.sender_email || 'No Email'}
+                </a>
+            </td>
             <td style="padding: 12px; line-height: 1.4;">${msg.message_content || '<i>Empty</i>'}</td>
-            <td style="padding: 12px; font-family: monospace; font-size: 0.75rem; opacity: 0.6;">${msg.sender_ip || '---'}</td>
         `;
+        // The cell containing msg.sender_ip has been removed
         body.appendChild(row);
     });
 
