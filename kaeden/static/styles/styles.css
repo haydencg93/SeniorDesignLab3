@@ -78,6 +78,14 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+    flex-wrap: wrap;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
 }
 
 h1 {
@@ -125,6 +133,30 @@ h1 {
 }
 
 .linkedin-link img {
+    width: 24px;
+    height: 24px;
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 205, 0, 0.35);
+    background-color: rgba(255, 205, 0, 0.06);
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.github-link:hover,
+.github-link:focus-visible {
+    transform: translateY(-2px);
+    background-color: rgba(255, 205, 0, 0.16);
+    box-shadow: 0 0 0 3px rgba(255, 205, 0, 0.16);
+}
+
+.github-link img {
     width: 24px;
     height: 24px;
 }
@@ -324,14 +356,14 @@ a:focus-visible {
 
 .project-copy {
     margin-top: 10px;
-    color: var(--soft-grey);
+    color: #d0d0d0;
 }
 
 .project-stack {
     margin-top: 14px;
-    color: var(--white);
     font-size: 0.9rem;
     font-weight: 700;
+    color: var(--white);
 }
 
 .project-link {
@@ -424,7 +456,6 @@ button:focus-visible {
     color: var(--soft-grey);
     font-size: 0.9rem;
 }
-
 @media (max-width: 760px) {
     .container {
         padding: 20px;
@@ -443,6 +474,10 @@ button:focus-visible {
     .section-heading-row {
         flex-direction: column;
         align-items: center;
+    }
+
+    .social-links {
+        justify-content: center;
     }
 
     h1 {

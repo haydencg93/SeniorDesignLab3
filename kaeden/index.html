@@ -15,21 +15,27 @@
                 <div class="profile-text">
                     <div class="name-row">
                         <h1>Kaeden Bogott</h1>
-                        <a href="https://www.linkedin.com/in/kaeden-bogott-854815252" target="_blank" rel="noopener" class="linkedin-link" aria-label="Visit Kaeden Bogott's LinkedIn profile">
-                            <img src="static/imgs/linkedin-icon.webp" alt="LinkedIn">
-                        </a>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/kaeden-bogott-854815252" target="_blank" rel="noopener" class="linkedin-link" aria-label="Visit Kaeden Bogott's LinkedIn profile">
+                                <img src="static/imgs/linkedin-icon.webp" alt="LinkedIn">
+                            </a>
+                            <a href="https://github.com/keedn" target="_blank" rel="noopener" class="github-link" aria-label="Visit Kaeden Bogott's GitHub profile">
+                                <img src="static/imgs/github_icon.webp" alt="GitHub">
+                            </a>
+                        </div>
                     </div>
                     <p class="subtitle">Computer Science and Engineering Student</p>
-                    <p class="intro-blurb">Senior Student at the University of Iowa focused on software engineering, systems, security, and IT applications</p>
+                    <p class="intro-blurb">Senior at the University of Iowa focused on software engineering, systems,     and security, with a strong interest in artificial intelligence and IT applications.</p>
                 </div>
             </header>
 
             <main>
                 <section id="about" class="content-card">
                     <h2>About Me</h2>
-                    <p>Hello! I am <strong>Kaeden Bogott</strong>, a senior Computer Science and Engineering student at the University of Iowa. I enjoy learning and applying universitywork to real and personal projects in my free time</p>
+                    <p>Hello! I’m <strong>Kaeden Bogott</strong>, a current senior in Computer Science and Engineering at the University of Iowa. I enjoy applying what I learn in the classroom to both personal and real-world projects in my free time.</p>
                 </section>
 
+                <!-- Skills, Education, Classes, Projects, and Contact sections below -->
                 <section id="skills" class="content-card">
                     <h2>Skills & Technologies</h2>
                     <div class="skills-group">
@@ -41,10 +47,11 @@
                             <span class="skill-chip">Java</span>
                             <span class="skill-chip">Assembly</span>
                             <span class="skill-chip">JavaScript</span>
-                            <span class="skill-chip">HTML</span>
-                            <span class="skill-chip">CSS</span>
+                            <span class="skill-chip">HTML / CSS</span>
                         </div>
                     </div>
+
+                    <!-- Tools section-->
                     <div class="skills-group">
                         <p class="section-label">Tools</p>
                         <div class="skill-chips">
@@ -58,21 +65,23 @@
                         </div>
                     </div>
                 </section>
-
+                
+                <!-- Education and Coursework sections -->
                 <section id="education" class="content-card">
                     <h2>Education</h2>
                     <div class="info-grid">
                         <div class="info-block">
-                            <p class="section-label">Degree</p>
-                            <p>Bachelor of Science in Computer Science and Engineering</p>
+                            <p align ="center"class="section-label">Degree</p>
+                            <p align ="center" wrap =><strong>Bachelor of Science Computer Science and Engineering</strong></p>
                         </div>
                         <div class="info-block">
-                            <p class="section-label">Institution</p>
-                            <p>University of Iowa</p>
+                            <p align ="center"class="section-label">Institution</p>
+                            <p align ="center"><strong>University of Iowa</strong></p>
                         </div>
                     </div>
                 </section>
 
+                <!--Relevant Courses section-->
                 <section id="classes" class="content-card">
                     <h2>Relevant Courses</h2>
                     <details class="classes-dropdown">
@@ -92,34 +101,13 @@
                     </details>
                 </section>
 
+                <!--Projects section-->
                 <section id="projects" class="content-card">
                     <div class="section-heading-row">
                         <h2>Projects</h2>
                         <a href="projects.html" class="section-link">View Full Projects Page</a>
                     </div>
-                    <div class="project-grid">
-                        <article class="project-card">
-                            <p class="project-title">Portfolio Website</p>
-                            <p class="project-copy">Designed and built a personal portfolio to showcase coursework, projects, and contact information with a custom UIowa-inspired visual style.</p>
-                            <p class="project-stack">HTML, CSS, JavaScript</p>
-                        </article>
-                        <article class="project-card">
-                            <p class="project-title">Coursework in Systems & Security</p>
-                            <p class="project-copy">Applied concepts from operating systems, software security, and architecture classes to technical assignments and team-based lab work.</p>
-                            <p class="project-stack">C, Linux, Debugging Tools</p>
-                        </article>
-                        <article class="project-card">
-                            <p class="project-title">Database & Software Engineering Work</p>
-                            <p class="project-copy">Built projects around structured data, object-oriented design, and collaborative development practices using modern IDE and version control workflows.</p>
-                            <p class="project-stack">Java, SQL, GitHub</p>
-                        </article>
-                        <article class="project-card">
-                            <p class="project-title">Gift Wise Project</p>
-                            <p class="project-copy">Created a web application to help users find the perfect gifts for their loved ones based on their interests and preferences.</p>
-                            <p class="project-stack">HTML, Ruby</p>
-                            <a href="https://github.com/hjmjohnsonSELT2025/giftwiseproject-selt_2025_team_06" target="_blank" rel="noopener" class="project-link">View on GitHub</a>
-                        </article>
-                    </div>
+                    <div id="featured-projects" class="project-grid" data-project-limit="4"></div>
                 </section>
 
                 <section id="contact" class="content-card">
@@ -142,7 +130,7 @@
         </footer>
     </div>
 
-    <script src="static/scripts/scripting.js"></script>
+    <script src="static/scripts/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </body>
 </html>

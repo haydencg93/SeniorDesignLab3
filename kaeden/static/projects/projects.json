@@ -1,0 +1,30 @@
+{
+    "projects": [
+        {
+            "title": "Portfolio Website",
+            "description": "Designed and built a personal portfolio to showcase coursework, projects, and contact information with a custom UIowa-inspired visual style.",
+            "stack": "HTML, CSS, JavaScript",
+            "github": "https://github.com/keedn",
+            "featured": true
+        },
+        {
+            "title": "____X ________ & ________ Y",
+            "description": "Applied concepts from operating systems, software security, and architecture classes to technical assignments and team-based lab work.",
+            "stack": "C, Linux, Debugging Tools",
+            "featured": true
+        },
+        {
+            "title": "____X ________ & ________ Y",
+            "description": "Built projects around structured data, object-oriented design, and collaborative development practices using modern IDE and version control workflows.",
+            "stack": "Java, SQL, GitHub",
+            "featured": true
+        },
+        {
+            "title": "Gift Wise Project",
+            "description": "Created a web application to help users find the perfect gifts for their loved ones based on their interests and preferences.",
+            "stack": "HTML, Ruby, Agile Development, GitHub, User Stories.",
+            "github": "https://github.com/hjmjohnsonSELT2025/giftwiseproject-selt_2025_team_06",
+            "featured": true
+        }
+    ]
+}

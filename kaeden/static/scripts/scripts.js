@@ -2,10 +2,115 @@
 
 let _supabase;
 
+function createProjectCard(project) {
+    const article = document.createElement('article');
+    article.className = 'project-card';
+
+    const title = document.createElement('p');
+    title.className = 'project-title';
+    title.textContent = project.title;
+
+    const copy = document.createElement('p');
+    copy.className = 'project-copy';
+    copy.textContent = project.description;
+
+    const stack = document.createElement('p');
+    stack.className = 'project-stack';
+    stack.textContent = project.stack;
+
+    article.append(title, copy, stack);
+
+    if (project.github) {
+        const githubLink = document.createElement('a');
+        githubLink.className = 'project-link';
+        githubLink.href = project.github;
+        githubLink.target = '_blank';
+        githubLink.rel = 'noopener';
+        githubLink.textContent = 'View on GitHub';
+        article.appendChild(githubLink);
+    }
+
+    if (project.demo) {
+        const demoLink = document.createElement('a');
+        demoLink.className = 'project-link project-link-secondary';
+        demoLink.href = project.demo;
+        demoLink.target = '_blank';
+        demoLink.rel = 'noopener';
+        demoLink.textContent = 'Live Demo';
+        article.appendChild(demoLink);
+    }
+
+    return article;
+}
+
+function normalizeProjects(payload) {
+    if (Array.isArray(payload)) {
+        return payload;
+    }
+
+    if (payload && Array.isArray(payload.projects)) {
+        return payload.projects;
+    }
+
+    return [];
+}
+
+async function loadProjects() {
+    const featuredContainer = document.getElementById('featured-projects');
+    const allProjectsContainer = document.getElementById('all-projects');
+
+    if (!featuredContainer && !allProjectsContainer) {
+        return;
+    }
+
+    try {
+        const response = await fetch('static/projects/projects.json');
+        if (!response.ok) {
+            throw new Error('Could not load project data.');
+        }
+
+        const payload = await response.json();
+        const projects = normalizeProjects(payload);
+
+        if (!projects.length) {
+            throw new Error('No projects were found in the project data file.');
+        }
+
+        if (featuredContainer) {
+            const limit = Number(featuredContainer.dataset.projectLimit || projects.length);
+            projects
+                .filter((project) => project.featured !== false)
+                .slice(0, limit)
+                .forEach((project) => {
+                    featuredContainer.appendChild(createProjectCard(project));
+                });
+        }
+
+        if (allProjectsContainer) {
+            projects.forEach((project) => {
+                allProjectsContainer.appendChild(createProjectCard(project));
+            });
+        }
+    } catch (err) {
+        console.error('Project loading error:', err);
+
+        [featuredContainer, allProjectsContainer].forEach((container) => {
+            if (!container) return;
+
+            const fallbackMessage = document.createElement('p');
+            fallbackMessage.className = 'project-copy';
+            fallbackMessage.textContent = 'Projects could not be loaded right now.';
+            container.appendChild(fallbackMessage);
+        });
+    }
+}
+
 /**
  * Initialize Supabase using the shared CONFIG.json
  */
 async function init() {
+    await loadProjects();
+
     try {
         // Path assumes CONFIG.json is in static/scripts/ relative to the site root
         // From kaeden/static/scripts/, we go up two levels to find the shared assets
