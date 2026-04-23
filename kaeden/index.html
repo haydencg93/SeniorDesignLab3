@@ -8,95 +8,136 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="page-shell">
+        <div class="container">
+            <header class="header-profile">
+                <img src="static/imgs/headshot.jpeg" alt="Profile photo of Kaeden Bogott" class="profile-image">
+                <div class="profile-text">
+                    <div class="name-row">
+                        <h1>Kaeden Bogott</h1>
+                        <a href="https://www.linkedin.com/in/kaeden-bogott-854815252" target="_blank" rel="noopener" class="linkedin-link" aria-label="Visit Kaeden Bogott's LinkedIn profile">
+                            <img src="static/imgs/linkedin-icon.webp" alt="LinkedIn">
+                        </a>
+                    </div>
+                    <p class="subtitle">Computer Science and Engineering Student</p>
+                    <p class="intro-blurb">Senior Student at the University of Iowa focused on software engineering, systems, security, and IT applications</p>
+                </div>
+            </header>
 
-    <header class="header-profile">
-        <img src="static/imgs/headshot.jpeg" alt="Profile photo of Kaeden Bogott" class="profile-image">
-        <div class="profile-text">
-            <h1> Kaeden Bogott </h1>
-            <p class="subtitle">Computer Science and Engineering Student  <a href="https://www.linkedin.com/in/kaeden-bogott-854815252" target="_blank" rel="noopener">
-              <img src="static/imgs/linkedin-icon.webp" alt="LinkedIn" style="width:24px; height:24px;">
-            </a></p>
+            <main>
+                <section id="about" class="content-card">
+                    <h2>About Me</h2>
+                    <p>Hello! I am <strong>Kaeden Bogott</strong>, a senior Computer Science and Engineering student at the University of Iowa. I enjoy learning and applying universitywork to real and personal projects in my free time</p>
+                </section>
+
+                <section id="skills" class="content-card">
+                    <h2>Skills & Technologies</h2>
+                    <div class="skills-group">
+                        <p class="section-label">Languages</p>
+                        <div class="skill-chips">
+                            <span class="skill-chip">C</span>
+                            <span class="skill-chip">C++</span>
+                            <span class="skill-chip">Python</span>
+                            <span class="skill-chip">Java</span>
+                            <span class="skill-chip">Assembly</span>
+                            <span class="skill-chip">JavaScript</span>
+                            <span class="skill-chip">HTML</span>
+                            <span class="skill-chip">CSS</span>
+                        </div>
+                    </div>
+                    <div class="skills-group">
+                        <p class="section-label">Tools</p>
+                        <div class="skill-chips">
+                            <span class="skill-chip">GitHub</span>
+                            <span class="skill-chip">VS Code</span>
+                            <span class="skill-chip">CLion</span>
+                            <span class="skill-chip">IntelliJ</span>
+                            <span class="skill-chip">SQL</span>
+                            <span class="skill-chip">MySQL</span>
+                            <span class="skill-chip">Adobe Photoshop</span>
+                            <span class="skill-chip">Adobe Illustrator</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="education" class="content-card">
+                    <h2>Education</h2>
+                    <div class="info-grid">
+                        <div class="info-block">
+                            <p class="section-label">Degree</p>
+                            <p>Bachelor of Science in Computer Science and Engineering</p>
+                        </div>
+                        <div class="info-block">
+                            <p class="section-label">Institution</p>
+                            <p>University of Iowa</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="classes" class="content-card">
+                    <h2>Relevant Courses</h2>
+                    <details class="classes-dropdown">
+                        <summary>View Coursework</summary>
+                        <ul class="classes-list">
+                            <li>CS:2230 - Data Structures</li>
+                            <li>CS:3330 - Algorithms</li>
+                            <li>CS:3620 - Operating Systems</li>
+                            <li>CS:3820 - Programming Language Concepts</li>
+                            <li>CS:4400 - Database Systems</li>
+                            <li>CS:5820 - Software Engineering Languages & Tools</li>
+                            <li>ECE:3540 - Communication Networks</li>
+                            <li>ECE:3350 - Computer Architecture & Organization</li>
+                            <li>ECE:5840 - Software Security</li>
+                            <li>ECE:5550 - Internet of Things</li>
+                        </ul>
+                    </details>
+                </section>
+
+                <section id="projects" class="content-card">
+                    <div class="section-heading-row">
+                        <h2>Projects</h2>
+                        <a href="projects.html" class="section-link">View Full Projects Page</a>
+                    </div>
+                    <div class="project-grid">
+                        <article class="project-card">
+                            <p class="project-title">Portfolio Website</p>
+                            <p class="project-copy">Designed and built a personal portfolio to showcase coursework, projects, and contact information with a custom UIowa-inspired visual style.</p>
+                            <p class="project-stack">HTML, CSS, JavaScript</p>
+                        </article>
+                        <article class="project-card">
+                            <p class="project-title">Coursework in Systems & Security</p>
+                            <p class="project-copy">Applied concepts from operating systems, software security, and architecture classes to technical assignments and team-based lab work.</p>
+                            <p class="project-stack">C, Linux, Debugging Tools</p>
+                        </article>
+                        <article class="project-card">
+                            <p class="project-title">Database & Software Engineering Work</p>
+                            <p class="project-copy">Built projects around structured data, object-oriented design, and collaborative development practices using modern IDE and version control workflows.</p>
+                            <p class="project-stack">Java, SQL, GitHub</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="contact" class="content-card">
+                    <h2>Contact Me</h2>
+                    <form id="contact-form">
+                        <label for="contact-message">Send a Message:</label>
+                        <textarea id="contact-message" name="message" required placeholder="Enter your message here..."></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </section>
+
+                <nav class="back-link-row">
+                    <a href="../index.html">Return to Team Home Page</a>
+                </nav>
+            </main>
         </div>
-    </header>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-        Hello! <strong>Kaeden Bogott</strong>, and I'm currently a senior Computer Science and Engineering student
-            at the University of Iowa.  
-    </section>
+        <footer class="footer">
+            <p>&copy; 2026 Kaeden Bogott | Powered by GitHub Pages</p>
+        </footer>
+    </div>
 
-    <section id="skills">
-        <h2>Skills & Technologies</h2>
-        <ul>
-            <li><strong>Languages:</strong> C, C++, Python, Java, Assembly, JavaScript, HTML, CSS</li>
-            <li><strong>Tools:</strong> GitHub, VS Code, CLion, IntelliJ, SQL, MYSQL, GitHub, Adobe Photoshop, Adobe Illustrator</li>
-        </ul>
-    </section>
-
-    <section id="education">
-        <h2>Education</h2>
-        <p><strong>Degrees:</strong> 
-            <ul>
-            <li>Bachelors Degree in Computer Science and Engineering</li>
-            </ul>
-        <p><strong>Institutions:</strong> 
-            <ul>
-            <li>University of Iowa</li>
-            </ul>
-    </section>
-
-     <section id="classes">
-        <h2>Relevant Courses Taken:</h2>
-        <details class="classes-dropdown">
-            <summary>View Coursework</summary>
-            <ul class="classes-list">
-                <li>Data Structures</li>
-                <li>Algorithms</li>
-                <li>Software Engineering Lang & Tools</li>
-                <li>Computer Organization</li>
-                <li>Operating Systems</li>
-                <li>Database Systems and Organization</li>
-                <li>Computer Architecture</li>
-                <li>Discrete Structures</li>
-                <li>Object-Oriented Software Development</li>
-                <li>Programming Language Concepts</li>
-                <li>Internet of Things</li>
-                <li>Software Security</li>
-                <li>Communication Networks</li>
-            </ul>
-        </details>
-    </section>
-
-    <section id="projects">
-        <h2>Projects</h2>
-            <ul>
-                <li><a href="projects.html">My Projects</a></li>
-            </ul>
-    </section>
-
-    <!-- ✅ Contact Form (connected to messages.html) -->
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <form id="contact-form">
-            <label for="contact-message">Send a Message:</label><br>
-            <textarea id="contact-message" name="message" required placeholder="Enter your message here..."></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
-
-    <ul>
-        <li><a href="../index.html">Return to Team Home Page</a></li>
-    </ul>
-
-</div>
-
-<div class="footer">
-    <p>&copy; 2026 Kaeden Bogott | Powered by GitHub Pages</p>
-</div>
-
-<script src="static/scripts/scripting.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="static/scripts/scripting.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </body>
 </html>

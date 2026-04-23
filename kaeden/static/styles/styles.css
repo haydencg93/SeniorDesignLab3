@@ -1,66 +1,63 @@
-/* To get started with Requirement 1, we need to align your portfolio with the University of Iowa's "Black & Gold" visual standards. The lab specifically mentions using the official brand fonts and colors as a baseline.Below is the revamped CSS for static/styling/indexStyling.css. I have updated the color palette to use the official UIowa Hex codes and adjusted the design to be more "Gold" forward while maintaining the "Black" background depth.Updated static/styling/indexStyling.cssCSS/* ECE:4880 Lab 3 - UIowa Black & Gold Standard
+/* ECE:4880 Lab 3 - UIowa Black & Gold Standard
    Official UIowa Gold: #FFCD00
    Official UIowa Black: #000000
 */
 
 :root {
     --uiowa-black: #000000;
-    --uiowa-gold: #FFCD00;
-    --dark-grey: #1a1a1a;
-    --white: #FFFFFF;
-    --soft-gold: #FFD700;
+    --uiowa-gold: #ffcd00;
+    --dark-grey: #161616;
+    --panel-grey: #1f1f1f;
+    --panel-border: #343434;
+    --soft-grey: #b7b7b7;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
-    /* Brand-compliant font stack: Roboto/Inter/Sans-Serif */
-    font-family: 'Roboto', 'Inter', -apple-system, sans-serif;
+    margin: 0;
+    font-family: "Roboto", "Inter", -apple-system, sans-serif;
     line-height: 1.6;
     color: var(--white);
-    background-color: var(--uiowa-black);
-    margin: 0;
-    padding: 0;
+    background:
+        radial-gradient(circle at top, rgba(255, 205, 0, 0.12), transparent 28%),
+        linear-gradient(180deg, #090909 0%, #000000 100%);
+}
+
+.page-shell {
+    min-height: 100vh;
+    padding: 32px 16px 48px;
 }
 
 .container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 30px;
-    background: var(--dark-grey); 
-    border-radius: 8px;
-    border: 1px solid var(--uiowa-gold); /* Gold border for structure */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px;
+    background: rgba(15, 15, 15, 0.9);
+    border: 1px solid rgba(255, 205, 0, 0.35);
+    border-radius: 20px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
 }
 
-header h1 {
-    color: var(--uiowa-gold);
-    border-bottom: 3px solid var(--uiowa-gold);
-    padding-bottom: 15px;
-    font-size: 2.5rem;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.header-profile,
+.content-card,
+.page-header {
+    background: linear-gradient(180deg, rgba(33, 33, 33, 0.96), rgba(22, 22, 22, 0.96));
+    border: 1px solid var(--panel-border);
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
 }
 
-h2 {
-    color: var(--uiowa-gold);
-    margin-top: 35px;
-    border-left: 5px solid var(--uiowa-gold);
-    padding-left: 15px;
-    text-transform: uppercase;
-    font-size: 1.5rem;
-}
-
-/* Form and Interactive Element Styling */
-a {
-    color: var(--uiowa-gold);
-    text-decoration: none;
-    font-weight: 700;
-    transition: all 0.3s ease;
-}
-
-a:hover {
-    color: var(--white);
-    text-decoration: underline;
+.header-profile {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 28px;
+    margin-bottom: 24px;
 }
 
 .profile-image {
@@ -68,40 +65,69 @@ a:hover {
     height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--uiowa-gold); /* Gold ring around portrait */
+    border: 4px solid var(--uiowa-gold);
+    box-shadow: 0 0 24px rgba(255, 205, 0, 0.18);
     flex-shrink: 0;
-}
-
-.header-profile {
-    display: flex;
-    align-items: center;
-    gap: 24px;
 }
 
 .profile-text {
     flex: 1;
+    border-bottom: 2px solid #787878;
+    padding-bottom: 18px;
 }
 
 .name-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 16px;
 }
 
-.name-row h1 {
+h1 {
+    margin: 0;
+    color: var(--uiowa-gold);
+    font-size: 2.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.subtitle,
+.intro-blurb,
+.page-subtitle {
     margin: 0;
 }
 
 .subtitle {
     margin-top: 12px;
+    font-size: 1.15rem;
     text-align: center;
-    font-size: 1.1rem;
+    color: var(--white);
+}
+
+.intro-blurb,
+.page-subtitle {
+    margin-top: 10px;
+    color: var(--soft-grey);
+    max-width: 60ch;
 }
 
 .linkedin-link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 205, 0, 0.45);
+    background-color: rgba(255, 205, 0, 0.06);
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.linkedin-link:hover,
+.linkedin-link:focus-visible {
+    transform: translateY(-2px);
+    background-color: rgba(255, 205, 0, 0.16);
+    box-shadow: 0 0 0 3px rgba(255, 205, 0, 0.16);
 }
 
 .linkedin-link img {
@@ -109,15 +135,107 @@ a:hover {
     height: 24px;
 }
 
+main {
+    display: grid;
+    gap: 18px;
+}
+
+.content-card,
+.page-header {
+    padding: 24px;
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.content-card:hover,
+.content-card:focus-within,
+.page-header:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 205, 0, 0.45);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+}
+
+h2 {
+    margin: 0 0 16px;
+    color: var(--uiowa-gold);
+    border-left: 4px solid var(--uiowa-gold);
+    padding-left: 14px;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    color: var(--uiowa-gold);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover,
+a:focus-visible {
+    color: var(--white);
+}
+
+.section-label {
+    margin-bottom: 10px;
+    color: var(--soft-grey);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.skills-group + .skills-group {
+    margin-top: 18px;
+}
+
+.skill-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 205, 0, 0.28);
+    border-radius: 999px;
+    background-color: rgba(255, 205, 0, 0.08);
+    color: var(--white);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.skill-chip:hover {
+    transform: translateY(-1px);
+    background-color: rgba(255, 205, 0, 0.16);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.info-block {
+    padding: 16px;
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    background-color: var(--panel-grey);
+}
+
 .classes-dropdown {
-    margin-top: 16px;
+    margin-top: 8px;
 }
 
 .classes-dropdown summary {
     cursor: pointer;
-    padding: 12px 16px;
-    border: 1px solid var(--uiowa-gold);
-    border-radius: 6px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 205, 0, 0.45);
+    border-radius: 10px;
     background-color: #262626;
     color: var(--uiowa-gold);
     font-weight: 700;
@@ -128,7 +246,7 @@ a:hover {
 .classes-dropdown summary:focus-visible {
     background-color: #333333;
     color: var(--white);
-    box-shadow: 0 0 0 3px rgba(255, 205, 0, 0.2);
+    box-shadow: 0 0 0 3px rgba(255, 205, 0, 0.18);
 }
 
 .classes-dropdown[open] summary {
@@ -137,105 +255,189 @@ a:hover {
 }
 
 .classes-list {
-    max-height: 220px;
+    max-height: 230px;
     overflow-y: auto;
     margin: 0;
-    padding: 14px 20px 14px 36px;
-    border: 1px solid #8a8a8a;
+    padding: 12px;
+    list-style: none;
+    border: 1px solid #787878;
     border-top: none;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    background-color: #1f1f1f;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #1c1c1c;
 }
 
 .classes-list li {
     margin-bottom: 8px;
-    padding: 10px 12px;
-    border-radius: 4px;
+    padding: 12px 14px;
+    border-radius: 8px;
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
+.classes-list li:last-child {
+    margin-bottom: 0;
+}
+
 .classes-list li:hover {
-    background-color: rgba(255, 205, 0, 0.18);
+    background-color: rgba(255, 205, 0, 0.16);
     color: var(--uiowa-gold);
     transform: translateX(4px);
 }
 
-.classes-list li:focus-within {
-    background-color: rgba(255, 205, 0, 0.18);
+.section-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.section-link {
+    font-size: 0.95rem;
+    color: var(--soft-grey);
+}
+
+.section-link:hover,
+.section-link:focus-visible {
     color: var(--uiowa-gold);
+}
+
+.project-grid,
+.projects-page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.project-card {
+    padding: 18px;
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    background-color: var(--panel-grey);
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 205, 0, 0.45);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+}
+
+.project-title {
+    color: var(--uiowa-gold);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.project-copy {
+    margin-top: 10px;
+    color: var(--soft-grey);
+}
+
+.project-stack {
+    margin-top: 14px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--soft-grey);
+}
+
+textarea,
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 205, 0, 0.38);
+    border-radius: 10px;
+    background-color: #232323;
+    color: var(--white);
+    resize: vertical;
+}
+
+textarea {
+    min-height: 140px;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 205, 0, 0.18);
+}
+
+button {
+    margin-top: 14px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--uiowa-gold);
+    color: var(--uiowa-black);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover,
+button:focus-visible {
+    transform: translateY(-1px);
+    background-color: #ffe066;
+}
+
+.back-link-row {
+    display: flex;
+    justify-content: center;
+    padding: 6px 0 0;
+}
+
+.back-link-row a {
+    padding: 10px 16px;
+    border: 1px solid rgba(255, 205, 0, 0.32);
+    border-radius: 999px;
+    background-color: rgba(255, 205, 0, 0.06);
+}
+
+.back-link-row a:hover,
+.back-link-row a:focus-visible {
+    background-color: rgba(255, 205, 0, 0.14);
 }
 
 .footer {
     text-align: center;
-    padding: 40px 20px;
-    color: var(--uiowa-gold);
-    font-size: 0.85rem;
-    opacity: 0.8;
+    margin-top: 18px;
+    color: var(--soft-grey);
+    font-size: 0.9rem;
 }
 
-/* Specific styling for the upcoming Password Dialog and Contact Form */
-input[type="text"], input[type="password"], textarea {
-    background-color: #333;
-    border: 1px solid var(--uiowa-gold);
-    color: white;
-    padding: 10px;
-    width: 100%;
-    margin-top: 10px;
-}
+@media (max-width: 760px) {
+    .container {
+        padding: 20px;
+    }
 
-button {
-    background-color: var(--uiowa-gold);
-    color: var(--uiowa-black);
-    border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.2s;
-}
+    .header-profile {
+        flex-direction: column;
+        text-align: center;
+    }
 
-button:hover {
-    background-color: var(--white);
-}
+    .profile-text {
+        width: 100%;
+    }
 
-#subtitle {
-    display: flex;
-    justify-content: center;
-}
+    .name-row,
+    .section-heading-row {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.classes-dropdown {
-    margin-top: 16px;
-}
+    h1 {
+        font-size: 2.2rem;
+    }
 
-.classes-dropdown summary {
-    cursor: pointer;
-    padding: 12px 16px;
-    border: 1px solid var(--uiowa-gold);
-    border-radius: 6px;
-    background-color: #262626;
-    color: var(--uiowa-gold);
-    font-weight: 700;
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
 }
-
-.classes-dropdown[open] summary {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.classes-list {
-    max-height: 220px;
-    overflow-y: auto;
-    margin: 0;
-    padding: 14px 20px 14px 36px;
-    border: 1px solid #8a8a8a;
-    border-top: none;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    background-color: #1f1f1f;
-}
-
-.classes-list li {
-    margin-bottom: 8px;
-}
-
