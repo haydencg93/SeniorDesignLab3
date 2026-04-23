@@ -1,15 +1,12 @@
-/* ECE:4880 Lab 3 - UIowa Black & Gold Standard
-   Official UIowa Gold: #FFCD00
-   Official UIowa Black: #000000
-*/
+/* ECE:4880 Lab 3 - UIowa Black & Gold Standard */
 
 :root {
     --uiowa-black: #000000;
     --uiowa-gold: #ffcd00;
     --dark-grey: #161616;
     --panel-grey: #1f1f1f;
-    --panel-border: #343434;
-    --soft-grey: #b7b7b7;
+    --panel-border: #3a3a3a;
+    --soft-grey: #c2c2c2;
     --white: #ffffff;
 }
 
@@ -19,12 +16,13 @@
 
 body {
     margin: 0;
+    padding: 0;
     font-family: "Roboto", "Inter", -apple-system, sans-serif;
     line-height: 1.6;
     color: var(--white);
     background:
-        radial-gradient(circle at top, rgba(255, 205, 0, 0.12), transparent 28%),
-        linear-gradient(180deg, #090909 0%, #000000 100%);
+        radial-gradient(circle at top, rgba(255, 205, 0, 0.1), transparent 28%),
+        linear-gradient(180deg, #080808 0%, var(--uiowa-black) 100%);
 }
 
 .page-shell {
@@ -36,20 +34,19 @@ body {
     max-width: 960px;
     margin: 0 auto;
     padding: 32px;
-    background: rgba(15, 15, 15, 0.9);
-    border: 1px solid rgba(255, 205, 0, 0.35);
+    background: rgba(17, 17, 17, 0.94);
+    border: 1px solid rgba(255, 205, 0, 0.28);
     border-radius: 20px;
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(6px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.42);
 }
 
 .header-profile,
 .content-card,
-.page-header {
-    background: linear-gradient(180deg, rgba(33, 33, 33, 0.96), rgba(22, 22, 22, 0.96));
+.page-header,
+.project-card {
+    background: linear-gradient(180deg, #232323 0%, #1a1a1a 100%);
     border: 1px solid var(--panel-border);
     border-radius: 18px;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
 }
 
 .header-profile {
@@ -57,7 +54,7 @@ body {
     align-items: center;
     gap: 28px;
     padding: 28px;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
 }
 
 .profile-image {
@@ -66,14 +63,14 @@ body {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid var(--uiowa-gold);
-    box-shadow: 0 0 24px rgba(255, 205, 0, 0.18);
     flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(255, 205, 0, 0.18);
 }
 
 .profile-text {
     flex: 1;
-    border-bottom: 2px solid #787878;
-    padding-bottom: 18px;
+    border-bottom: 2px solid #7f7f7f;
+    padding-bottom: 16px;
 }
 
 .name-row {
@@ -86,29 +83,26 @@ body {
 h1 {
     margin: 0;
     color: var(--uiowa-gold);
-    font-size: 2.8rem;
+    font-size: 2.7rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
 
-.subtitle,
-.intro-blurb,
-.page-subtitle {
-    margin: 0;
-}
-
 .subtitle {
-    margin-top: 12px;
-    font-size: 1.15rem;
+    margin: 12px 0 0;
     text-align: center;
-    color: var(--white);
+    font-size: 1.1rem;
 }
 
 .intro-blurb,
 .page-subtitle {
-    margin-top: 10px;
+    margin: 10px 0 0;
     color: var(--soft-grey);
-    max-width: 60ch;
+    max-width: 62ch;
+}
+
+.intro-blurb {
+    text-align: center;
 }
 
 .linkedin-link {
@@ -118,7 +112,7 @@ h1 {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 205, 0, 0.45);
+    border: 1px solid rgba(255, 205, 0, 0.35);
     background-color: rgba(255, 205, 0, 0.06);
     transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -143,25 +137,26 @@ main {
 .content-card,
 .page-header {
     padding: 24px;
-    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .content-card:hover,
 .content-card:focus-within,
 .page-header:hover {
     transform: translateY(-2px);
-    border-color: rgba(255, 205, 0, 0.45);
+    border-color: rgba(255, 205, 0, 0.42);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
 }
 
 h2 {
     margin: 0 0 16px;
     color: var(--uiowa-gold);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     border-left: 4px solid var(--uiowa-gold);
     padding-left: 14px;
-    font-size: 1.4rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
 }
 
 p {
@@ -182,7 +177,7 @@ a:focus-visible {
 .section-label {
     margin-bottom: 10px;
     color: var(--soft-grey);
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -205,7 +200,6 @@ a:focus-visible {
     border: 1px solid rgba(255, 205, 0, 0.28);
     border-radius: 999px;
     background-color: rgba(255, 205, 0, 0.08);
-    color: var(--white);
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
@@ -234,7 +228,7 @@ a:focus-visible {
 .classes-dropdown summary {
     cursor: pointer;
     padding: 14px 16px;
-    border: 1px solid rgba(255, 205, 0, 0.45);
+    border: 1px solid rgba(255, 205, 0, 0.42);
     border-radius: 10px;
     background-color: #262626;
     color: var(--uiowa-gold);
@@ -260,7 +254,7 @@ a:focus-visible {
     margin: 0;
     padding: 12px;
     list-style: none;
-    border: 1px solid #787878;
+    border: 1px solid #7f7f7f;
     border-top: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -293,8 +287,8 @@ a:focus-visible {
 }
 
 .section-link {
-    font-size: 0.95rem;
     color: var(--soft-grey);
+    font-size: 0.95rem;
 }
 
 .section-link:hover,
@@ -311,16 +305,15 @@ a:focus-visible {
 
 .project-card {
     padding: 18px;
-    border: 1px solid var(--panel-border);
-    border-radius: 16px;
-    background-color: var(--panel-grey);
-    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.project-card:hover {
+.project-card:hover,
+.project-card:focus-within {
     transform: translateY(-3px);
-    border-color: rgba(255, 205, 0, 0.45);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+    border-color: rgba(255, 205, 0, 0.42);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.26);
 }
 
 .project-title {
@@ -336,9 +329,22 @@ a:focus-visible {
 
 .project-stack {
     margin-top: 14px;
+    color: var(--white);
     font-size: 0.9rem;
     font-weight: 700;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--uiowa-gold);
+    font-weight: 700;
+}
+
+.project-link:hover,
+.project-link:focus-visible {
     color: var(--white);
+    text-decoration: underline;
 }
 
 label {
@@ -347,20 +353,25 @@ label {
     color: var(--soft-grey);
 }
 
+#contact-form {
+    display: grid;
+    gap: 10px;
+}
+
 textarea,
 input[type="text"],
 input[type="password"] {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid rgba(255, 205, 0, 0.38);
+    border: 1px solid rgba(255, 205, 0, 0.35);
     border-radius: 10px;
-    background-color: #232323;
+    background-color: #252525;
     color: var(--white);
     resize: vertical;
 }
 
 textarea {
-    min-height: 140px;
+    min-height: 150px;
 }
 
 textarea:focus,
@@ -380,6 +391,7 @@ button {
     font-weight: 700;
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease;
+    justify-self: start;
 }
 
 button:hover,
@@ -391,7 +403,7 @@ button:focus-visible {
 .back-link-row {
     display: flex;
     justify-content: center;
-    padding: 6px 0 0;
+    padding-top: 6px;
 }
 
 .back-link-row a {
@@ -407,8 +419,8 @@ button:focus-visible {
 }
 
 .footer {
-    text-align: center;
     margin-top: 18px;
+    text-align: center;
     color: var(--soft-grey);
     font-size: 0.9rem;
 }
