@@ -2,10 +2,27 @@
 
 let _supabase;
 
+function setContactStatus(message, state = 'idle') {
+    const status = document.getElementById('contact-status');
+    if (!status) {
+        return;
+    }
+
+    status.textContent = message;
+    if (state === 'idle') {
+        delete status.dataset.state;
+        return;
+    }
+
+    status.dataset.state = state;
+}
+
+// Creates a project card for portfolio display based on project data
 function createProjectCard(project) {
     const article = document.createElement('article');
     article.className = 'project-card';
 
+    
     const title = document.createElement('p');
     title.className = 'project-title';
     title.textContent = project.title;
@@ -20,6 +37,7 @@ function createProjectCard(project) {
 
     article.append(title, copy, stack);
 
+    // Add GitHub and Demo links if they exist
     if (project.github) {
         const githubLink = document.createElement('a');
         githubLink.className = 'project-link';
@@ -43,6 +61,7 @@ function createProjectCard(project) {
     return article;
 }
 
+// Normalizes project data to ensure we have an array of projects regardless of the original structure
 function normalizeProjects(payload) {
     if (Array.isArray(payload)) {
         return payload;
@@ -55,6 +74,7 @@ function normalizeProjects(payload) {
     return [];
 }
 
+// Loads project data from the JSON file and populates the featured and all projects sections
 async function loadProjects() {
     const featuredContainer = document.getElementById('featured-projects');
     const allProjectsContainer = document.getElementById('all-projects');
@@ -112,18 +132,27 @@ async function init() {
     await loadProjects();
 
     try {
+        if (!window.supabase || typeof window.supabase.createClient !== 'function') {
+            throw new Error('Supabase client library did not load.');
+        }
+
         // Path assumes CONFIG.json is in static/scripts/ relative to the site root
         // From kaeden/static/scripts/, we go up two levels to find the shared assets
         const response = await fetch('../static/scripts/CONFIG.json');
         if (!response.ok) throw new Error("Could not load configuration.");
         
         const config = await response.json();
-        _supabase = supabase.createClient(config.SUPABASE_URL, config.SUPABASE_ANON_KEY);
+        if (!config.SUPABASE_URL || !config.SUPABASE_ANON_KEY) {
+            throw new Error('Configuration is missing Supabase credentials.');
+        }
+
+        _supabase = window.supabase.createClient(config.SUPABASE_URL, config.SUPABASE_ANON_KEY);
         
         console.log("Supabase linked to Kaeden's Profile.");
         setupForms();
     } catch (err) {
         console.error("Initialization error:", err);
+        setContactStatus('Messaging is unavailable right now. Please refresh and try again.', 'error');
     }
 }
 
@@ -135,44 +164,64 @@ function setupForms() {
     const contactForm = document.getElementById('contact-form');
     if (!contactForm) return;
 
+    const messageBox = document.getElementById('contact-message');
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    if (!messageBox || !submitButton) return;
+
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const messageBox = document.getElementById('contact-message');
-        const messageContent = messageBox.value;
+        const messageContent = messageBox.value.trim();
 
         if (!_supabase) {
-            alert("Database not ready. Please try again.");
+            setContactStatus('Database connection is not ready yet.', 'error');
             return;
         }
+
+        if (!messageContent) {
+            setContactStatus('Please enter a message before sending.', 'error');
+            messageBox.focus();
+            return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+        setContactStatus('Sending message...', 'idle');
 
         let senderIp = "Unknown";
         try {
             // Fetch the user's public IP address for the sender_ip
             const ipResponse = await fetch('https://api.ipify.org?format=json');
-            const ipData = await ipResponse.json();
-            senderIp = ipData.ip;
+            if (ipResponse.ok) {
+                const ipData = await ipResponse.json();
+                senderIp = ipData.ip || senderIp;
+            }
         } catch (ipErr) {
             console.warn("Could not fetch IP, proceeding as Unknown.");
         }
 
-        // Logic for appending to the 'messages' table
-        const { error } = await _supabase
-            .from('messages')
-            .insert([
-                { 
-                    recipient_name: 'Kaeden', 
-                    message_content: messageContent,
-                    sender_ip: senderIp // Adding the fetched IP address
-                    // created_at is handled by Supabase default NOW()
-                }
-            ]);
+        try {
+            const { error } = await _supabase
+                .from('messages')
+                .insert([
+                    {
+                        recipient_name: 'Kaeden',
+                        message_content: messageContent,
+                        sender_ip: senderIp
+                    }
+                ]);
 
-        if (error) {
-            console.error("Error saving message:", error);
-            alert("Failed to send message. Please check connection.");
-        } else {
-            alert("Message sent! It will be viewable in the team's protected area.");
+            if (error) {
+                throw error;
+            }
+
             contactForm.reset();
+            setContactStatus("Message sent successfully.", 'success');
+        } catch (error) {
+            console.error("Error saving message:", error);
+            setContactStatus('Failed to send message. Check the browser console and Supabase policies.', 'error');
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Send Message';
         }
     });
 }

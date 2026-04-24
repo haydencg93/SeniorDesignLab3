@@ -56,7 +56,6 @@
                         <p class="section-label">Tools</p>
                         <div class="skill-chips">
                             <span class="skill-chip">GitHub</span>
-                            <span class="skill-chip">VS Code</span>
                             <span class="skill-chip">SQL</span>
                             <span class="skill-chip">MySQL</span>
                             <span class="skill-chip">Adobe Photoshop</span>
@@ -71,12 +70,12 @@
                     <h2>Education</h2>
                     <div class="info-grid">
                         <div class="info-block">
-                            <p align ="center"class="section-label">Degree</p>
-                            <p align ="center" wrap =><strong>Bachelor of Science Computer Science and Engineering</strong></p>
+                            <p align ="center-text"class="section-label">Degree</p>
+                            <p align ="center-text" wrap =><strong>Bachelor of Science Computer Science and Engineering</strong></p>
                         </div>
                         <div class="info-block">
-                            <p align ="center"class="section-label">Institution</p>
-                            <p align ="center"><strong>University of Iowa</strong></p>
+                            <p align ="center-text"class="section-label">Institution</p>
+                            <p align ="center-text"><strong>University of Iowa</strong></p>
                         </div>
                     </div>
                 </section>
@@ -117,6 +116,7 @@
                         <label for="contact-message">Send a Message:</label>
                         <textarea id="contact-message" name="message" required placeholder="Enter your message here..."></textarea>
                         <button type="submit">Send Message</button>
+                        <p id="contact-status" aria-live="polite"></p>
                     </form>
                 </section>
 
@@ -131,7 +131,7 @@
         </footer>
     </div>
 
-    <script src="static/scripts/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="static/scripts/scripts.js"></script>
 </body>
 </html>
