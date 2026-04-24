@@ -1,143 +1,360 @@
-/* To get started with Requirement 1, we need to align your portfolio with the University of Iowa's "Black & Gold" visual standards. The lab specifically mentions using the official brand fonts and colors as a baseline.Below is the revamped CSS for static/styling/indexStyling.css. I have updated the color palette to use the official UIowa Hex codes and adjusted the design to be more "Gold" forward while maintaining the "Black" background depth.Updated static/styling/indexStyling.cssCSS/* ECE:4880 Lab 3 - UIowa Black & Gold Standard
-   Official UIowa Gold: #FFCD00
-   Official UIowa Black: #000000
+/* UIowa Brand Colors & Modern UX 
+   Official Gold: #FFCD00
+   Accent Gold: #D4AF37 (Metallic feel)
 */
 
 :root {
     --uiowa-black: #000000;
     --uiowa-gold: #FFCD00;
-    --dark-grey: #1a1a1a;
-    --white: #FFFFFF;
-    --soft-gold: #FFD700;
+    --deep-slate: #0d0d0d;
+    --card-bg: rgba(20, 20, 20, 0.7);
+    --gold-glow: rgba(255, 205, 0, 0.15);
+    --text-main: #e0e0e0;
+    --text-dim: #a0a0a0;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
-    /* Brand-compliant font stack: Roboto/Inter/Sans-Serif */
-    font-family: 'Roboto', 'Inter', -apple-system, sans-serif;
-    line-height: 1.6;
-    color: var(--white);
+    font-family: 'Inter', -apple-system, sans-serif;
     background-color: var(--uiowa-black);
+    color: var(--text-main);
     margin: 0;
-    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Background Ambient Glow */
+.bg-glow {
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 30px;
-    background: var(--dark-grey); 
-    border-radius: 8px;
-    border: 1px solid var(--uiowa-gold); /* Gold border for structure */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+/* Header & Profile */
+.header-profile {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.profile-frame {
+    display: inline-block;
+    padding: 8px;
+    background: linear-gradient(135deg, var(--uiowa-gold), transparent);
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    border: 4px solid var(--uiowa-black);
+    transition: var(--transition);
+}
+
+.profile-frame:hover .profile-image {
+    transform: scale(1.02);
 }
 
 header h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
     color: var(--uiowa-gold);
-    border-bottom: 3px solid var(--uiowa-gold);
-    padding-bottom: 15px;
-    font-size: 2.5rem;
-    text-align: center;
+    margin: 0;
+    letter-spacing: -2px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+}
+
+.badge-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.badge {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border: 1px solid rgba(255, 205, 0, 0.4);
+    border-radius: 20px;
+    color: var(--uiowa-gold);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Social Links */
+.social-links {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 205, 0, 0.3);
+    border-radius: 12px;
+    color: var(--uiowa-gold);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.social-badge:hover {
+    background: var(--uiowa-gold);
+    color: black;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--gold-glow);
+}
+
+/* Glass Panels */
+.glass-panel {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 205, 0, 0.1);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    transition: var(--transition);
+}
+
+.glass-panel:hover {
+    border-color: rgba(255, 205, 0, 0.3);
+    box-shadow: 0 10px 50px var(--gold-glow);
 }
 
 h2 {
     color: var(--uiowa-gold);
-    margin-top: 35px;
-    border-left: 5px solid var(--uiowa-gold);
-    padding-left: 15px;
-    text-transform: uppercase;
     font-size: 1.5rem;
+    margin: 0; /* Updated for summary usage */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
 }
 
-/* Form and Interactive Element Styling */
-a {
+h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(255, 205, 0, 0.5), transparent);
+    margin-left: 20px;
+}
+
+/* Dropdown/Accordion Styling */
+.coursework-dropdown {
+    padding: 0 !important; /* Let summary/content handle padding */
+    overflow: hidden;
+}
+
+.coursework-dropdown summary {
+    padding: 40px;
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.coursework-dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.coursework-dropdown summary:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.dropdown-arrow {
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid var(--uiowa-gold);
+    border-bottom: 2px solid var(--uiowa-gold);
+    transform: rotate(45deg);
+    transition: var(--transition);
+}
+
+details[open] .dropdown-arrow {
+    transform: rotate(-135deg);
+}
+
+.course-list {
+    padding: 0 40px 40px 40px;
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Skills Grid */
+.skill-category h3 {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.skill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.skill-chip {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.skill-chip:hover {
+    background: rgba(255, 205, 0, 0.1);
+    border-color: var(--uiowa-gold);
     color: var(--uiowa-gold);
-    text-decoration: none;
-    font-weight: 700;
-    transition: all 0.3s ease;
 }
 
-a:hover {
-    color: var(--white);
-    text-decoration: underline;
+/* Experience Items */
+.exp-item {
+    margin-bottom: 25px;
+    border-left: 2px solid rgba(255, 205, 0, 0.2);
+    padding-left: 20px;
 }
 
-.profile-image {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid var(--uiowa-gold); /* Gold ring around portrait */
-    flex-shrink: 0;
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
 }
 
-.footer {
-    text-align: center;
-    padding: 40px 20px;
+.gold-text {
     color: var(--uiowa-gold);
+    font-weight: bold;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
     font-size: 0.85rem;
-    opacity: 0.8;
+    color: var(--uiowa-gold);
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-/* Specific styling for the upcoming Password Dialog and Contact Form */
-input[type="text"], input[type="password"], textarea {
-    background-color: #333;
-    border: 1px solid var(--uiowa-gold);
-    color: white;
-    padding: 10px;
+input, textarea {
     width: 100%;
-    margin-top: 10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255, 205, 0, 0.2);
+    border-radius: 8px;
+    padding: 14px;
+    color: white;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--uiowa-gold);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 0 15px var(--gold-glow);
 }
 
 button {
-    background-color: var(--uiowa-gold);
-    color: var(--uiowa-black);
+    background: var(--uiowa-gold);
+    color: black;
     border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.2s;
-}
-
-button:hover {
-    background-color: var(--white);
-}
-
-#subtitle {
-    display: flex;
-    justify-content: center;
-}
-
-#contact-form label {
-    display: block;
-    margin-bottom: 2px !important; /* Forces the label closer to the input below it */
-    margin-top: 15px;
-    color: var(--uiowa-gold);
-    font-weight: bold;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 900;
     text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    transition: var(--transition);
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 205, 0, 0.4);
+    background: white;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Scroll Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.nav-back {
+    color: var(--text-dim);
+    text-decoration: none;
     font-size: 0.9rem;
+    transition: var(--transition);
 }
 
-input[type="text"], 
-input[type="email"], 
-textarea {
-    background-color: #222;
+.nav-back:hover {
+    color: var(--uiowa-gold);
+}
+
+.btn-gold {
+    display: inline-block;
+    color: var(--uiowa-gold);
+    text-decoration: none;
     border: 1px solid var(--uiowa-gold);
-    color: var(--white);
-    padding: 12px;
-    margin-top: 0 !important;
-    box-sizing: border-box;
-    border-radius: 4px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: var(--transition);
 }
 
-input[type="text"], 
-input[type="email"] {
-    width: 50%; /* Keeps the half-width requirement */
-}
-
-textarea {
-    width: 100%; /* Keeps the message box full width */
-    min-height: 100px;
+.btn-gold:hover {
+    background: var(--uiowa-gold);
+    color: black;
 }
