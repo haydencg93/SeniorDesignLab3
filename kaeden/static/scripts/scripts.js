@@ -18,13 +18,11 @@ function setContactStatus(message, state = 'idle') {
     status.dataset.state = state;
 }
 
-
 // Creates a project card for portfolio display based on project data
 function createProjectCard(project) {
     const article = document.createElement('article');
     article.className = 'project-card';
 
-    
     const title = document.createElement('p');
     title.className = 'project-title';
     title.textContent = project.title;
@@ -39,7 +37,6 @@ function createProjectCard(project) {
 
     article.append(title, copy, stack);
 
-    // Add GitHub and Demo links if they exist
     if (project.github) {
         const githubLink = document.createElement('a');
         githubLink.className = 'project-link';
@@ -85,7 +82,6 @@ async function loadProjects() {
         return;
     }
 
-    // Get the project data with a cache buster to ensure we always get the latest version
     try {
         const cacheBuster = `?t=${Date.now()}`;
         const response = await fetch(`static/projects/projects.json${cacheBuster}`);
@@ -142,56 +138,54 @@ async function init() {
             throw new Error('Supabase client library did not load.');
         }
 
-        // Path assumes CONFIG.json is in static/scripts/ relative to the site root
-        // From kaeden/static/scripts/, we go up two levels to find the shared assets
         const response = await fetch('../static/scripts/CONFIG.json');
-        if (!response.ok) throw new Error("Could not load configuration.");
-        
+        if (!response.ok) {
+            throw new Error('Could not load configuration.');
+        }
+
         const config = await response.json();
         if (!config.SUPABASE_URL || !config.SUPABASE_ANON_KEY) {
             throw new Error('Configuration is missing Supabase credentials.');
         }
 
         _supabase = window.supabase.createClient(config.SUPABASE_URL, config.SUPABASE_ANON_KEY);
-        
+
         console.log("Supabase linked to Kaeden's Profile.");
         setupForms();
     } catch (err) {
-        console.error("Initialization error:", err);
+        console.error('Initialization error:', err);
         setContactStatus('Messaging is unavailable right now. Please refresh and try again.', 'error');
     }
 }
 
-function refreshProjectsOnPageShow() {
-    window.addEventListener('pageshow', () => {
-        loadProjects();
-    });
-}
-
 /**
- * Requirement #4: Contact Form Logic
- * Saves messages to the 'messages' table with recipient, content, and sender IP.
+ * Contact form logic
+ * Saves messages to the 'messages' table using the same field pattern as Hayden's form.
  */
 function setupForms() {
     const contactForm = document.getElementById('contact-form');
     if (!contactForm) return;
 
-    const messageBox = document.getElementById('contact-message');
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    if (!messageBox || !submitButton) return;
-
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const messageContent = messageBox.value.trim();
+
+        const nameBox = document.getElementById('contact-name');
+        const emailBox = document.getElementById('contact-email');
+        const messageBox = document.getElementById('contact-message');
+        const submitButton = contactForm.querySelector('button[type="submit"]');
 
         if (!_supabase) {
-            setContactStatus('Database connection is not ready yet.', 'error');
+            setContactStatus('Database not ready. Please try again.', 'error');
             return;
         }
 
-        if (!messageContent) {
-            setContactStatus('Please enter a message before sending.', 'error');
-            messageBox.focus();
+        if (!nameBox || !emailBox || !messageBox || !submitButton) {
+            setContactStatus('Contact form is incomplete on this page.', 'error');
+            return;
+        }
+
+        if (!nameBox.value.trim() || !emailBox.value.trim() || !messageBox.value.trim()) {
+            setContactStatus('Please complete all contact fields before sending.', 'error');
             return;
         }
 
@@ -199,26 +193,15 @@ function setupForms() {
         submitButton.textContent = 'Sending...';
         setContactStatus('Sending message...', 'idle');
 
-        let senderIp = "Unknown";
-        try {
-            // Fetch the user's public IP address for the sender_ip
-            const ipResponse = await fetch('https://api.ipify.org?format=json');
-            if (ipResponse.ok) {
-                const ipData = await ipResponse.json();
-                senderIp = ipData.ip || senderIp;
-            }
-        } catch (ipErr) {
-            console.warn("Could not fetch IP, proceeding as Unknown.");
-        }
-
         try {
             const { error } = await _supabase
                 .from('messages')
                 .insert([
                     {
                         recipient_name: 'Kaeden',
-                        message_content: messageContent,
-                        sender_ip: senderIp
+                        sender_name: nameBox.value.trim(),
+                        sender_email: emailBox.value.trim(),
+                        message_content: messageBox.value.trim()
                     }
                 ]);
 
@@ -227,10 +210,10 @@ function setupForms() {
             }
 
             contactForm.reset();
-            setContactStatus("Message sent successfully.", 'success');
+            setContactStatus('Message sent successfully.', 'success');
         } catch (error) {
-            console.error("Error saving message:", error);
-            setContactStatus('Failed to send message. Check the browser console and Supabase policies.', 'error');
+            console.error('Error saving message:', error);
+            setContactStatus('Failed to send message. Check Supabase table columns and RLS policies.', 'error');
         } finally {
             submitButton.disabled = false;
             submitButton.textContent = 'Send Message';
@@ -238,7 +221,12 @@ function setupForms() {
     });
 }
 
-// Fire initialization once whether the script loads before or after DOMContentLoaded.
+function refreshProjectsOnPageShow() {
+    window.addEventListener('pageshow', () => {
+        loadProjects();
+    });
+}
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {
