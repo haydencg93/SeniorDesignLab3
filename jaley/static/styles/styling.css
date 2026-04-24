@@ -104,3 +104,35 @@ button {
 button:hover {
     background-color: var(--white);
 }
+
+#contact-form label {
+    display: block;
+    margin-bottom: 2px !important; /* Forces the label closer to the input below it */
+    margin-top: 15px;
+    color: var(--uiowa-gold);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+input[type="text"], 
+input[type="email"], 
+textarea {
+    background-color: #222;
+    border: 1px solid var(--uiowa-gold);
+    color: var(--white);
+    padding: 12px;
+    margin-top: 0 !important;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+input[type="text"], 
+input[type="email"] {
+    width: 50%; /* Keeps the half-width requirement */
+}
+
+textarea {
+    width: 100%; /* Keeps the message box full width */
+    min-height: 100px;
+}
