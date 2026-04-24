@@ -407,9 +407,53 @@ label {
     color: var(--soft-grey);
 }
 
+.contact-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto auto;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(255, 205, 0, 0.18), transparent 68%);
+    pointer-events: none;
+}
+
+.contact-header {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.contact-copy {
+    max-width: 62ch;
+    color: var(--soft-grey);
+}
+
 #contact-form {
     display: grid;
-    gap: 10px;
+    gap: 18px;
+}
+
+.contact-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.form-field {
+    display: grid;
+    gap: 8px;
+}
+
+.contact-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
 #contact-status {
@@ -435,6 +479,7 @@ label {
 
 textarea,
 input[type="text"],
+input[type="email"],
 input[type="password"] {
     width: 100%;
     padding: 12px 14px;
@@ -451,6 +496,7 @@ textarea {
 
 textarea:focus,
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(255, 205, 0, 0.18);
@@ -552,5 +598,13 @@ button:focus-visible {
     .project-grid,
     .projects-page-grid {
         grid-template-columns: 1fr;
+    }
+
+    .contact-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-actions {
+        align-items: flex-start;
     }
 }

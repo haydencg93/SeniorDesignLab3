@@ -70,12 +70,12 @@
                     <h2>Education</h2>
                     <div class="info-grid">
                         <div class="info-block">
-                            <p align ="center-text"class="section-label">Degree</p>
-                            <p align ="center-text" wrap =><strong>Bachelor of Science Computer Science and Engineering</strong></p>
+                            <p class="section-label">Degree</p>
+                            <p><strong>Bachelor of Science Computer Science and Engineering</strong></p>
                         </div>
                         <div class="info-block">
-                            <p align ="center-text"class="section-label">Institution</p>
-                            <p align ="center-text"><strong>University of Iowa</strong></p>
+                            <p class="section-label">Institution</p>
+                            <p><strong>University of Iowa</strong></p>
                         </div>
                     </div>
                 </section>
@@ -110,13 +110,34 @@
                     <div id="featured-projects" class="project-grid" data-project-limit="4"></div>
                 </section>
 
-                <section id="contact" class="content-card">
-                    <h2>Contact Me</h2>
+                <section id="contact" class="content-card contact-card">
+                    <div class="contact-header">
+                        <h2>Contact Me</h2>
+                        <p class="contact-copy">Reach out for project collaboration, internship opportunities, or conversations around software engineering, systems, and AI.</p>
+                    </div>
+
                     <form id="contact-form">
-                        <label for="contact-message">Send a Message:</label>
-                        <textarea id="contact-message" name="message" required placeholder="Enter your message here..."></textarea>
-                        <button type="submit">Send Message</button>
-                        <p id="contact-status" aria-live="polite"></p>
+                        <div class="contact-form-grid">
+                            <div class="form-field">
+                                <label for="contact-name">Name</label>
+                                <input type="text" id="contact-name" name="name" required placeholder="Your full name">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" name="email" required placeholder="yourname@example.com">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" name="message" required placeholder="Tell me what you are working on or what you would like to discuss."></textarea>
+                        </div>
+
+                        <div class="contact-actions">
+                            <button type="submit">Send Message</button>
+                            <p id="contact-status" aria-live="polite"></p>
+                        </div>
                     </form>
                 </section>
 
@@ -132,6 +153,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="static/scripts/scripts.js"></script>
+    <script src="static/scripts/scripts.js?v=20260424"></script>
 </body>
 </html>

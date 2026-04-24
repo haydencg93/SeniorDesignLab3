@@ -2,6 +2,7 @@
 
 let _supabase;
 
+// Utility function to update the contact form status message and state (idle, success, error)
 function setContactStatus(message, state = 'idle') {
     const status = document.getElementById('contact-status');
     if (!status) {
@@ -16,6 +17,7 @@ function setContactStatus(message, state = 'idle') {
 
     status.dataset.state = state;
 }
+
 
 // Creates a project card for portfolio display based on project data
 function createProjectCard(project) {
@@ -83,8 +85,10 @@ async function loadProjects() {
         return;
     }
 
+    // Get the project data with a cache buster to ensure we always get the latest version
     try {
-        const response = await fetch('static/projects/projects.json');
+        const cacheBuster = `?t=${Date.now()}`;
+        const response = await fetch(`static/projects/projects.json${cacheBuster}`);
         if (!response.ok) {
             throw new Error('Could not load project data.');
         }
@@ -97,6 +101,7 @@ async function loadProjects() {
         }
 
         if (featuredContainer) {
+            featuredContainer.innerHTML = '';
             const limit = Number(featuredContainer.dataset.projectLimit || projects.length);
             projects
                 .filter((project) => project.featured !== false)
@@ -107,6 +112,7 @@ async function loadProjects() {
         }
 
         if (allProjectsContainer) {
+            allProjectsContainer.innerHTML = '';
             projects.forEach((project) => {
                 allProjectsContainer.appendChild(createProjectCard(project));
             });
@@ -154,6 +160,12 @@ async function init() {
         console.error("Initialization error:", err);
         setContactStatus('Messaging is unavailable right now. Please refresh and try again.', 'error');
     }
+}
+
+function refreshProjectsOnPageShow() {
+    window.addEventListener('pageshow', () => {
+        loadProjects();
+    });
 }
 
 /**
@@ -226,5 +238,11 @@ function setupForms() {
     });
 }
 
-// Fire initialization on load
-document.addEventListener('DOMContentLoaded', init);
+// Fire initialization once whether the script loads before or after DOMContentLoaded.
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+
+refreshProjectsOnPageShow();
