@@ -33,41 +33,34 @@ function setupForms() {
 
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        const nameBox = document.getElementById('contact-name');
+        const emailBox = document.getElementById('contact-email');
         const messageBox = document.getElementById('contact-message');
-        const messageContent = messageBox.value;
 
         if (!_supabase) {
             alert("Database not ready. Please try again.");
             return;
         }
 
-        let senderIp = "Unknown";
-        try {
-            // Fetch the user's public IP address for the sender_ip
-            const ipResponse = await fetch('https://api.ipify.org?format=json');
-            const ipData = await ipResponse.json();
-            senderIp = ipData.ip;
-        } catch (ipErr) {
-            console.warn("Could not fetch IP, proceeding as Unknown.");
-        }
-
-        // Logic for appending to the 'messages' table
+        // Removed IP fetching logic entirely for privacy/cleaning
         const { error } = await _supabase
             .from('messages')
             .insert([
                 { 
                     recipient_name: 'Jaley', 
-                    message_content: messageContent,
-                    sender_ip: senderIp // Adding the fetched IP address
-                    // created_at is handled by Supabase default NOW()
+                    sender_name: nameBox.value,
+                    sender_email: emailBox.value,
+                    message_content: messageBox.value
+                    // sender_ip removed
                 }
             ]);
 
         if (error) {
             console.error("Error saving message:", error);
-            alert("Failed to send message. Please check connection.");
+            alert("Failed to send message.");
         } else {
-            alert("Message sent! It will be viewable in the team's protected area.");
+            alert("Message sent!");
             contactForm.reset();
         }
     });
