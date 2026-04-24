@@ -8,39 +8,16 @@
             "featured": true
         },
         {
-            "title": "____X ________ & ________ Y",
-            "description": "X & Y & Z X & Y & Z X & Y & Z",
-            "stack": "X & Y & Z",
-            "featured": true
-        },
-        {
-            "title": "____X ________ & ________ Y",
-            "description": "X & Y & Z X & Y & Z X & Y & Z",
-            "stack": "X & Y & Z",
-            "featured": true
-        },
-                {
-            "title": "____X ________ & ________ Y",
-            "description": "X & Y & Z X & Y & Z X & Y & Z",
-            "stack": "X & Y & Z",
-            "featured": true
-        },
-                {
-            "title": "____X ________ & ________ Y",
-            "description": "X & Y & Z X & Y & Z X & Y & Z",
-            "stack": "X & Y & Z",
-            "featured": true
-        },
-                {
-            "title": "____X ________ & ________ Y",
-            "description": "X & Y & Z X & Y & Z X & Y & Z",
-            "stack": "X & Y & Z",
-            "featured": true
+        "title": "AI Image Captioning and Generation",
+        "description": "A web-based AI application that lets users upload or capture images, generate detailed captions with Moondream, create new images using Flux-Schnell through Replicate, and evaluate real versus AI-generated images with ChatGPT. The project includes a Flask web UI, API wrapper, image processing scripts, and evaluation tools.",
+        "stack": "Python, Flask, JavaScript, HTML, CSS, Moondream, Replicate, Flux-Schnell, ChatGPT",
+        "github": "https://github.com/kxwixm/GAITFinal",
+        "featured": true
         },
         {
             "title": "Gift Wise Project",
             "description": "Created a web application to help users find the perfect gifts for their loved ones based on their interests and preferences.",
-            "stack": "HTML, Ruby, Agile Development, GitHub, Heroku Deployment",
+            "stack": "HTML CSS, Ruby, Agile Development, GitHub, Heroku Deployment",
             "github": "https://github.com/hjmjohnsonSELT2025/giftwiseproject-selt_2025_team_06",
             "featured": true
         }
